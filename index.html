@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mark-Making as Layout — Fashion Design Term 3</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #f2ede8;
+  --teal: #0a7a7a;
+  --teal-light: #e0f0f0;
+  --pink: #ea37a3;
+  --pink-light: #fdf1f5;
+  --blue-accent: #4a9aba;
+  --warm-mid: #d4cfc8;
+  --grid: #ddd8d2;
+  --white: #ffffff;
+  --concrete: #8a8a8a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── DIAGONAL SLASH (decorative) ── */
+body::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  left: 48%;
+  width: 4px;
+  height: 120vh;
+  background: rgba(255,255,255,0.6);
+  transform: rotate(12deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 40px 30px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── HEADER ── */
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 20px;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.header-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.site-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.site-header h1 em {
+  color: var(--teal);
+  font-style: italic;
+}
+
+.header-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  text-align: right;
+  color: var(--concrete);
+  line-height: 1.8;
+}
+
+.lesson-arc {
+  display: flex;
+  gap: 0;
+  margin: 18px 0 35px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+}
+
+.arc-item {
+  flex: 1;
+  padding: 10px 14px;
+  border-right: 2px solid var(--ink);
+  background: white;
+}
+.arc-item:last-child { border-right: none; }
+.arc-item.active { background: var(--ink); color: white; }
+.arc-item .arc-num { color: var(--pink); font-weight: 700; font-size: 0.65rem; display: block; margin-bottom: 3px; }
+.arc-item.active .arc-num { color: var(--blue-accent); }
+.arc-item strong { display: block; font-size: 0.8rem; }
+
+/* ── PROGRESS BAR ── */
+.progress-wrap {
+  height: 6px;
+  background: var(--warm-mid);
+  margin-bottom: 30px;
+  border-radius: 0;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pink), var(--teal));
+  transition: width 0.4s ease;
+}
+
+/* ── NAV BLOCKS ── */
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 700px) {
+  .nav-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.nav-block {
+  border: 2px solid var(--warm-mid);
+  background: white;
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  border-radius: 3px;
+}
+.nav-block:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+.nav-block.active { background: var(--ink); color: white; border-color: var(--ink); }
+.nav-block .nav-icon { font-size: 1.3rem; display: block; margin-bottom: 5px; }
+.nav-block .nav-label { font-weight: 700; display: block; font-size: 0.7rem; }
+.nav-block .nav-sub { color: var(--concrete); font-size: 0.65rem; margin-top: 2px; display: block; }
+.nav-block.active .nav-sub { color: var(--warm-mid); }
+
+/* ── SECTIONS ── */
+.section { display: none; }
+.section.active { display: block; animation: fadeUp 0.4s ease; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── TYPOGRAPHY ── */
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 2rem 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+h2::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 28px;
+  background: var(--pink);
+  flex-shrink: 0;
+}
+
+h3 {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  margin: 1.5rem 0 0.8rem;
+}
+
+p {
+  margin-bottom: 1.1em;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+a { color: var(--teal); font-weight: 600; }
+a:hover { color: var(--pink); }
+
+/* ── SECTION BANNER ── */
+.section-banner {
+  padding: 14px 20px;
+  margin-bottom: 25px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-left: 6px solid currentColor;
+  border-radius: 0 4px 4px 0;
+}
+.banner-hw { background: var(--pink-light); color: var(--pink); }
+.banner-t1 { background: var(--teal-light); color: var(--teal); }
+.banner-t2 { background: #f0ebf8; color: #7b4fa3; }
+.banner-t3 { background: #eaf3fb; color: #2a7aab; }
+
+/* ── STUDENT EXAMPLE BOX ── */
+.student-example {
+  background: var(--ink);
+  color: white;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 25px 0;
+}
+.example-header {
+  padding: 12px 20px;
+  background: rgba(255,255,255,0.08);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue-accent);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.example-body {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 600px) { .example-body { grid-template-columns: 1fr; } }
+
+.example-image-slot {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 3px;
+  overflow: hidden;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.example-image-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.example-annotations {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+}
+
+.annotation {
+  padding: 12px 14px;
+  border-left: 3px solid var(--blue-accent);
+  background: rgba(255,255,255,0.05);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+.annotation strong { color: var(--blue-accent); display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+
+/* ── INFO BOX ── */
+.info-box {
+  border: 2px solid var(--teal);
+  border-radius: 4px;
+  padding: 18px 20px;
+  margin: 20px 0;
+  background: var(--teal-light);
+}
+.info-box strong { color: var(--teal); }
+.info-box ul { margin-left: 18px; margin-top: 8px; }
+.info-box li { margin-bottom: 6px; font-size: 0.9rem; }
+
+/* ── MARK VOCABULARY GRID ── */
+.mark-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.mark-card {
+  background: white;
+  border: 2px solid var(--warm-mid);
+  border-radius: 4px;
+  padding: 16px 12px;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: default;
+}
+.mark-card:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+.mark-card .mark-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+.mark-card .mark-name { font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700; color: var(--teal); display: block; }
+.mark-card .mark-use { font-size: 0.75rem; color: var(--concrete); margin-top: 4px; line-height: 1.4; }
+
+/* ── WORKFLOW BOX ── */
+.workflow {
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 25px 0;
+}
+.workflow-head {
+  background: var(--ink);
+  color: white;
+  padding: 12px 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.workflow-body { background: white; padding: 20px; }
+
+.step {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--grid);
+  align-items: flex-start;
+}
+.step:last-child { border-bottom: none; padding-bottom: 0; }
+
+.step-num {
+  width: 34px;
+  height: 34px;
+  background: var(--pink);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.step-content .step-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--pink);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.step-content ul { margin-left: 16px; margin-bottom: 8px; }
+.step-content li { font-size: 0.88rem; margin-bottom: 5px; }
+.step-content p { font-size: 0.88rem; margin-bottom: 8px; }
+
+/* ── COMPARISON ── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+@media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+
+.compare-card {
+  border-radius: 4px;
+  padding: 18px;
+  border: 2px solid var(--warm-mid);
+  background: white;
+}
+.compare-card h4 { font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; margin-bottom: 10px; }
+.compare-card ul { margin-left: 16px; }
+.compare-card li { font-size: 0.85rem; margin-bottom: 6px; }
+.compare-card.good { border-color: var(--teal); }
+.compare-card.good h4 { color: var(--teal); }
+.compare-card.note { border-color: var(--blue-accent); }
+.compare-card.note h4 { color: var(--blue-accent); }
+
+/* ── TIP BOX ── */
+.tip-box {
+  background: #fffbea;
+  border: 2px solid #e6c200;
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 0.88rem;
+}
+.tip-box h4 { color: #a08800; font-family: 'Space Mono', monospace; font-size: 0.78rem; text-transform: uppercase; margin-bottom: 8px; }
+.tip-box ul { margin-left: 16px; }
+.tip-box li { margin-bottom: 5px; }
+
+/* ── NOTICE ── */
+.notice {
+  background: rgba(234, 55, 163, 0.08);
+  border-left: 5px solid var(--pink);
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.88rem;
+}
+.notice strong { color: var(--pink); }
+
+/* ── LAYOUT PRINCIPLE CARDS ── */
+.principle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.principle-card {
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid var(--warm-mid);
+  transition: all 0.2s;
+}
+.principle-card:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+
+.principle-top {
+  background: var(--ink);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.principle-body { padding: 14px; }
+.principle-body h4 { font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; color: var(--teal); margin-bottom: 6px; text-transform: uppercase; }
+.principle-body p { font-size: 0.82rem; margin: 0; color: var(--ink); line-height: 1.5; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: white;
+  border: 2px solid var(--teal);
+  border-radius: 4px;
+  padding: 22px;
+  margin: 25px 0;
+}
+.checklist h3 {
+  color: var(--teal);
+  text-align: center;
+  border-bottom: 2px dashed var(--teal);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.check-box {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--teal);
+  border-radius: 3px;
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+.check-box:hover { background: var(--teal-light); }
+.check-box.checked { background: var(--teal); }
+.check-box.checked::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  top: 0px;
+  left: 3px;
+}
+.check-label { font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 700; color: var(--teal); display: block; }
+.check-desc { font-size: 0.82rem; color: var(--concrete); margin-top: 2px; }
+
+/* ── SHORTCUT ── */
+.key {
+  display: inline-block;
+  background: var(--ink);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── WHAT TO MAKE SUMMARY ── */
+.what-box {
+  background: var(--ink);
+  color: white;
+  border-radius: 4px;
+  padding: 24px;
+  margin: 25px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+.what-item { border-left: 3px solid var(--blue-accent); padding-left: 14px; }
+.what-item .wi-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue-accent); display: block; margin-bottom: 4px; }
+.what-item .wi-val { font-size: 0.88rem; line-height: 1.5; }
+
+/* ── NAV BUTTONS ── */
+.nav-btns {
+  display: flex;
+  justify-content: space-between;
+  margin: 35px 0 10px;
+  gap: 12px;
+}
+
+.btn {
+  padding: 12px 22px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.btn-prev { background: white; color: var(--ink); }
+.btn-next { background: var(--ink); color: white; border-color: var(--ink); }
+.btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ── SUBMIT BOX ── */
+.submit-box {
+  border: 3px dashed var(--teal);
+  border-radius: 4px;
+  padding: 28px;
+  text-align: center;
+  margin: 30px 0;
+  background: white;
+}
+.submit-box h3 { color: var(--teal); font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 16px; }
+
+.submit-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 16px 0 20px;
+}
+.submit-item {
+  background: var(--teal-light);
+  border: 1px solid var(--teal);
+  border-radius: 3px;
+  padding: 10px 16px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+.padlet-btn {
+  display: inline-block;
+  background: var(--teal);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.padlet-btn:hover { background: var(--ink); color: white; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10,122,122,0.3); }
+
+/* ── RESEARCH BOX ── */
+.research-box {
+  background: linear-gradient(135deg, #f0f8f8, white);
+  border: 2px solid var(--teal);
+  border-radius: 4px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.research-box h4 { color: var(--teal); font-family: 'Space Mono', monospace; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.research-box ul { margin-left: 18px; }
+.research-box li { font-size: 0.88rem; margin-bottom: 7px; }
+
+/* ── DIAGONAL ACCENT LINE in sections ── */
+.diagonal-rule {
+  height: 3px;
+  background: linear-gradient(90deg, var(--pink), var(--teal));
+  margin: 30px 0;
+  transform: skewX(-15deg);
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 20px 0 10px;
+  border-top: 1px dashed var(--warm-mid);
+  margin-top: 40px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--concrete);
+}
+
+/* ── MODAL ── */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+}
+.modal-img {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  max-width: 92vw;
+  max-height: 90vh;
+  border: 3px solid white;
+  border-radius: 3px;
+}
+.modal-close {
+  position: absolute;
+  top: 18px; right: 28px;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: var(--pink); }
+
+/* ── PRINT ── */
+.print-btn {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 52px;
+  height: 52px;
+  background: var(--teal);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: all 0.2s;
+  z-index: 50;
+}
+.print-btn:hover { transform: translateY(-4px); background: var(--ink); }
+
+@media print {
+  .print-btn, .nav-btns, .nav-grid, .progress-wrap { display: none; }
+  .section { display: block !important; }
+  body::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div>
+      <div class="header-eyebrow">Fashion Design · Term 3 · Session 2</div>
+      <h1>Mark-Making<br>as <em>Layout</em></h1>
+    </div>
+    <div class="header-meta">
+      Building on Session 1<br>
+      Handwriting → Font<br>
+      ↓<br>
+      Marks → Visual Language
+    </div>
+  </header>
+
+  <!-- LESSON ARC -->
+  <div class="lesson-arc">
+    <div class="arc-item">
+      <span class="arc-num">SESSION 1</span>
+      <strong>Your Handwriting</strong>
+      <span style="font-size:0.65rem;color:#aaa;">→ typed font</span>
+    </div>
+    <div class="arc-item active">
+      <span class="arc-num">SESSION 2 ← YOU ARE HERE</span>
+      <strong>Your Marks</strong>
+      <span style="font-size:0.65rem;color:var(--blue-accent);">→ layout language</span>
+    </div>
+    <div class="arc-item">
+      <span class="arc-num">OUTCOME</span>
+      <strong>Research Pages</strong>
+      <span style="font-size:0.65rem;color:#aaa;">with your visual voice</span>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-fill" id="progressBar" style="width:20%"></div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-grid">
+    <div class="nav-block active" data-sec="overview">
+      <span class="nav-icon">👁</span>
+      <span class="nav-label">Overview</span>
+      <span class="nav-sub">The idea</span>
+    </div>
+    <div class="nav-block" data-sec="homework">
+      <span class="nav-icon">✋</span>
+      <span class="nav-label">Homework</span>
+      <span class="nav-sub">Make marks</span>
+    </div>
+    <div class="nav-block" data-sec="task1">
+      <span class="nav-icon">⬆</span>
+      <span class="nav-label">Task 1</span>
+      <span class="nav-sub">Build font</span>
+    </div>
+    <div class="nav-block" data-sec="task2">
+      <span class="nav-icon">◻</span>
+      <span class="nav-label">Task 2</span>
+      <span class="nav-sub">Layout page</span>
+    </div>
+    <div class="nav-block" data-sec="task3">
+      <span class="nav-icon">↓</span>
+      <span class="nav-label">Task 3</span>
+      <span class="nav-sub">Save & submit</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION: OVERVIEW
+  ═══════════════════════════════════════════════ -->
+  <div id="overview" class="section active">
+
+    <h2>What Is This Session?</h2>
+    <p>In Session 1 you turned your <strong>handwriting</strong> into a font you could type with. This session goes further. You will turn your <strong>hand-made marks</strong> into a visual language — a set of graphic tools you can use to build a research page that tells a story.</p>
+
+    <p>The marks you make will do real work on the page: <strong>connecting images, guiding the eye, framing ideas, and showing relationships</strong> between your primary research and secondary sources.</p>
+
+    <div class="diagonal-rule"></div>
+
+    <h2>Student Inspiration</h2>
+    <p>Look at how Micky Zhuo used marks, type, and images together to create research pages that feel completely their own:</p>
+
+    <div class="student-example">
+      <div class="example-header">Student Work — Micky Zhuo: Design 2025/26 · Theme: Memory of the City</div>
+      <div class="example-body">
+        <div class="example-image-slot">
+          <img src="micky_1.jpg" alt="Micky Zhuo research page 1 — industrial marks and blue accents" onclick="openModal(this.src)" onerror="this.parentElement.innerHTML='[Add micky_1.jpg — research spread with industrial marks, blue rectangle, gestural brushwork]'" style="cursor:pointer;">
+        </div>
+        <div class="example-annotations">
+          <div class="annotation">
+            <strong>Gestural marks as texture</strong>
+            Scratchy ink brushwork frames images without containing them — the marks feel like the research theme itself: fragmented, industrial, raw.
+          </div>
+          <div class="annotation">
+            <strong>The diagonal slash</strong>
+            A single diagonal line cuts across the entire spread — connecting primary photography (Shoreditch architecture) with secondary textile research. One mark, doing enormous work.
+          </div>
+          <div class="annotation">
+            <strong>Colour as a voice</strong>
+            A single blue rectangle and teal hyperlink-style text create a conceptual thread. The colour isn't decoration — it signals "this connects to that."
+          </div>
+        </div>
+      </div>
+      <div class="example-body">
+        <div class="example-image-slot">
+          <img src="micky_2.jpg" alt="Micky Zhuo research page 2 — body, space, controlled marks" onclick="openModal(this.src)" onerror="this.parentElement.innerHTML='[Add micky_2.jpg — research spread with drawn rectangles over body image, parallel lines, arrows]'" style="cursor:pointer;">
+        </div>
+        <div class="example-annotations">
+          <div class="annotation">
+            <strong>Drawn rectangles as analysis</strong>
+            Hand-drawn boxes overlaid on a photograph of a body don't just decorate — they frame, isolate, and ask a question: what does it mean to be contained in space?
+          </div>
+          <div class="annotation">
+            <strong>Arrows that narrate</strong>
+            Small directional marks guide the reader from one image to the next — from a personal photograph to an architectural reference to a furniture object.
+          </div>
+          <div class="annotation">
+            <strong>Text as mark-making</strong>
+            Rotated, scattered text is placed like a mark — not just informing but composing. The words "controlled spaces" appear as both annotation and design element.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>The Key Idea: Calligraphr as a Mark Library</h2>
+
+    <div class="info-box">
+      <strong>The hack:</strong> Calligraphr doesn't know what you draw in each box. It just converts whatever black mark it finds into a scalable character. So instead of letters, you draw <strong>marks, arrows, gestures, and textures</strong> — and assign each one to a keystroke.
+      <ul>
+        <li>Press <strong>A</strong> → a diagonal slash appears</li>
+        <li>Press <strong>B</strong> → an ink splatter appears</li>
+        <li>Press <strong>C</strong> → a gestural underline appears</li>
+        <li>These marks scale perfectly, work in any Adobe app, and feel completely yours</li>
+      </ul>
+    </div>
+
+    <h2>What Makes a Mark Work on a Page?</h2>
+
+    <div class="mark-grid">
+      <div class="mark-card">
+        <span class="mark-icon">→</span>
+        <span class="mark-name">Directional</span>
+        <span class="mark-use">Leads the eye from one image to another</span>
+      </div>
+      <div class="mark-card">
+        <span class="mark-icon">╱</span>
+        <span class="mark-name">Divider</span>
+        <span class="mark-use">Separates zones while creating energy</span>
+      </div>
+      <div class="mark-card">
+        <span class="mark-icon">◻</span>
+        <span class="mark-name">Frame</span>
+        <span class="mark-use">Isolates or highlights part of an image</span>
+      </div>
+      <div class="mark-card">
+        <span class="mark-icon">≈</span>
+        <span class="mark-name">Texture</span>
+        <span class="mark-use">Adds visual rhythm between images</span>
+      </div>
+      <div class="mark-card">
+        <span class="mark-icon">∿</span>
+        <span class="mark-name">Connector</span>
+        <span class="mark-use">Links primary to secondary research</span>
+      </div>
+      <div class="mark-card">
+        <span class="mark-icon">✱</span>
+        <span class="mark-name">Emphasis</span>
+        <span class="mark-use">Draws attention to a key idea or source</span>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <h4>💡 The most important question</h4>
+      Before you draw any mark, ask: <strong>does this mark feel like my research theme?</strong> A mark about decay should feel different from a mark about structure. The marks carry meaning before anyone reads a word.
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn btn-prev" disabled>← Previous</button>
+      <button class="btn btn-next" onclick="goTo('homework')">Next: Homework →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION: HOMEWORK
+  ═══════════════════════════════════════════════ -->
+  <div id="homework" class="section">
+
+    <div class="section-banner banner-hw">HOMEWORK — Make Your Mark Library</div>
+
+    <p>Do this <strong>before class</strong>. You are designing a set of hand-made marks that will become your visual vocabulary for this project.</p>
+
+    <h2>Step 1 — Identify Your Research Theme</h2>
+    <p>Your marks should respond to your research focus — the concept or idea driving your work. Look at your research and ask yourself:</p>
+
+    <div class="research-box">
+      <h4>Finding Your Theme</h4>
+      <ul>
+        <li>What connects your artist references? What do they share?</li>
+        <li>Is there a feeling, texture, or quality in your primary research images?</li>
+        <li>If your project had a material quality — rough, fragile, geometric, organic — what would it be?</li>
+        <li>What word would you use as a subheading on your research page?</li>
+      </ul>
+    </div>
+
+    <div class="what-box">
+      <div class="what-item">
+        <span class="wi-label">Example theme</span>
+        <span class="wi-val">Industrial decay / urban memory</span>
+      </div>
+      <div class="what-item">
+        <span class="wi-label">Mark quality</span>
+        <span class="wi-val">Scratchy, fragmented, diagonal tension</span>
+      </div>
+      <div class="what-item">
+        <span class="wi-label">Avoid</span>
+        <span class="wi-val">Generic neat arrows that could belong to anyone's project</span>
+      </div>
+    </div>
+
+    <h2>Step 2 — Plan Your Mark Set</h2>
+    <p>You need <strong>at least 8–10 marks</strong> — enough to cover different functions on the page. Plan one mark for each role:</p>
+
+    <div class="mark-grid">
+      <div class="mark-card">
+        <span class="mark-icon">→</span>
+        <span class="mark-name">1–2 arrows</span>
+        <span class="mark-use">For connecting images — make them feel like your theme</span>
+      </div>
+      <div class="mark-card">
+        <span class="mark-icon">╱</span>
+        <span class="mark-name">1–2 dividers</span>
+        <span class="mark-use">Lines or strokes that create zones on the page</span>
+      </div>
+      <div class="mark-card">
+        <span class="mark-icon">◻</span>
+        <span class="mark-name">1 frame mark</span>
+        <span class="mark-use">A drawn rectangle or enclosure gesture</span>
+      </div>
+      <div class="mark-card">
+        <span class="mark-icon">≈</span>
+        <span class="mark-name">2–3 textures</span>
+        <span class="mark-use">Repeated marks, hatching, stipple, grain</span>
+      </div>
+      <div class="mark-card">
+        <span class="mark-icon">✦</span>
+        <span class="mark-name">1 emphasis</span>
+        <span class="mark-use">Star, splash, or burst to flag key references</span>
+      </div>
+      <div class="mark-card">
+        <span class="mark-icon">∿</span>
+        <span class="mark-name">1 connector</span>
+        <span class="mark-use">A flowing or jagged link between two ideas</span>
+      </div>
+    </div>
+
+    <h2>Step 3 — Download the Calligraphr Template</h2>
+
+    <div class="workflow">
+      <div class="workflow-head">Getting Your Template</div>
+      <div class="workflow-body">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Log in to Calligraphr</div>
+            <p>Go to <a href="https://www.calligraphr.com" target="_blank">calligraphr.com</a> and log in with your Session 1 account.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Download a template</div>
+            <ul>
+              <li>Click <strong>"Templates"</strong></li>
+              <li>Choose any character set — you only need the boxes, not the letters</li>
+              <li>Download as <strong>PDF</strong> and print on <strong>white paper</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Assign marks to boxes</div>
+            <p>Write a small pencil note at the top of each box — which mark goes here? For example: box A = diagonal slash, box B = ink splatter. This is your <strong>mark map</strong> — keep it, you'll need it later.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Step 4 — Make Your Marks</h2>
+
+    <p>Use <strong>black ink</strong> on the template. Your marks should fill the box boldly — not timidly. Think about what materials respond to your theme:</p>
+
+    <div class="compare-grid">
+      <div class="compare-card good">
+        <h4>✓ Works well with Calligraphr</h4>
+        <ul>
+          <li>Bold brush marks in black ink</li>
+          <li>Thick pen gestures and strokes</li>
+          <li>Stamp impressions (dark ink)</li>
+          <li>Block print marks</li>
+          <li>Drawn shapes — rectangles, arrows, spirals</li>
+          <li>Splattered or flicked ink (bold, not too fine)</li>
+        </ul>
+      </div>
+      <div class="compare-card note">
+        <h4>⚠ May need testing first</h4>
+        <ul>
+          <li>Very fine pencil or light charcoal</li>
+          <li>Extremely dense crosshatching</li>
+          <li>Photographic or tonal textures</li>
+          <li>Very pale or diluted marks</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="notice">
+      <strong>Key principle:</strong> Calligraphr vectorises whatever black shape it finds. It doesn't know if it's a letter or a mark — it just traces the edges. This means your mark needs to be <strong>dark, clear, and contained within the box</strong>.
+    </div>
+
+    <div class="tip-box">
+      <h4>💡 Make extras</h4>
+      <ul>
+        <li>Make 2–3 versions of each mark — choose the best one to scan</li>
+        <li>Test on a scrap piece of paper first</li>
+        <li>Wait for all ink to dry fully before scanning</li>
+        <li>Consider making marks in the same session so they feel consistent as a set</li>
+      </ul>
+    </div>
+
+    <h2>Step 5 — Scan Your Template</h2>
+    <ul style="margin-left:20px; margin-bottom:16px;">
+      <li style="margin-bottom:8px;font-size:0.9rem;">Scan at <strong>300 DPI or higher</strong></li>
+      <li style="margin-bottom:8px;font-size:0.9rem;">Or use Adobe Scan / Microsoft Lens on your phone</li>
+      <li style="margin-bottom:8px;font-size:0.9rem;">Save as <strong>JPEG</strong></li>
+      <li style="margin-bottom:8px;font-size:0.9rem;">Check it is straight and clearly lit — no shadows across boxes</li>
+    </ul>
+
+    <div class="checklist">
+      <h3>Homework Checklist ✓</h3>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">I have identified my research theme</span>
+          <span class="check-desc">I know the concept driving my project and how to express it as marks</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">I have planned my mark set (8–10 marks)</span>
+          <span class="check-desc">Arrows, dividers, frames, textures, emphasis marks</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">I have downloaded and printed a Calligraphr template</span>
+          <span class="check-desc">From calligraphr.com with my Session 1 account</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">I have made all my marks in black ink</span>
+          <span class="check-desc">Bold, dark, each mark in its assigned box</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">I have scanned my template as a JPEG</span>
+          <span class="check-desc">Clear, straight, 300 DPI minimum</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">I have my mark map (which mark = which keystroke)</span>
+          <span class="check-desc">Written note or photo of the pencil labels on the template</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn btn-prev" onclick="goTo('overview')">← Overview</button>
+      <button class="btn btn-next" onclick="goTo('task1')">Next: Task 1 →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION: TASK 1 — BUILD THE FONT
+  ═══════════════════════════════════════════════ -->
+  <div id="task1" class="section">
+
+    <div class="section-banner banner-t1">TASK 1 — Upload, Clean &amp; Install Your Mark Font</div>
+
+    <p>You are now going to turn your scanned marks into an installable font using Calligraphr. Once installed, you can type your marks into any Adobe app.</p>
+
+    <div class="workflow">
+      <div class="workflow-head">Steps to Follow</div>
+      <div class="workflow-body">
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Upload Your Scan</div>
+            <ul>
+              <li>Log in to <a href="https://www.calligraphr.com" target="_blank">Calligraphr</a></li>
+              <li>Go to <strong>"My Fonts"</strong> → <strong>"Upload Template"</strong></li>
+              <li>Choose your JPEG file</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Check Your Marks</div>
+            <ul>
+              <li>Look at each character box — does the mark appear correctly?</li>
+              <li>Check marks aren't clipped at the edges</li>
+              <li>Check the mark feels like it has the right scale in the box</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Clean Each Mark</div>
+            <ul>
+              <li>Click on a character → <strong>"Edit Character"</strong></li>
+              <li>Delete any background noise or stray marks outside your intended shape</li>
+              <li>Do this for <strong>every mark</strong> — small spots will repeat every time you use that key</li>
+            </ul>
+            <div class="notice">
+              <strong>Note:</strong> Unlike letters, some marks deliberately have an irregular edge — don't over-clean. Preserve the mark quality that makes it feel hand-made.
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Name and Build Your Font</div>
+            <ul>
+              <li>Give your font a name — include your name and theme: e.g. <em>"Sam_Industrial_Marks"</em></li>
+              <li>Click <strong>"Build Font"</strong></li>
+              <li>Check the preview — does it look right?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-title">Download and Install</div>
+            <ul>
+              <li>Download the <strong>.ttf or .otf</strong> file</li>
+              <li><strong>Mac:</strong> Double-click → "Install Font"</li>
+              <li><strong>Windows:</strong> Right-click → "Install"</li>
+              <li><strong>Important:</strong> Close and reopen Photoshop or InDesign to see your font</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <div class="step-title">Test Your Marks</div>
+            <ul>
+              <li>Open Photoshop or InDesign</li>
+              <li>Select the Text tool — find your font by name</li>
+              <li>Type the keys you assigned to your marks (A, B, C…)</li>
+              <li>Your marks should appear — try scaling them up and down</li>
+            </ul>
+            <div class="tip-box" style="margin-top:12px;">
+              <h4>💡 Scale is everything</h4>
+              Because these are font characters, you can size them using the font size field. A mark at 12pt is a small annotation detail; the same mark at 200pt becomes a full-bleed graphic element.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="checklist">
+      <h3>Task 1 Checklist ✓</h3>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Uploaded template to Calligraphr</span>
+          <span class="check-desc">All marks visible in the character editor</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Cleaned all marks</span>
+          <span class="check-desc">Background noise removed, mark quality preserved</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Built and downloaded the font</span>
+          <span class="check-desc">.ttf or .otf file saved</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Font installed on this computer</span>
+          <span class="check-desc">Mac: Install Font / Windows: Right-click Install</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Marks appear correctly in Photoshop/InDesign</span>
+          <span class="check-desc">App reopened, font found by name, marks scale correctly</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn btn-prev" onclick="goTo('homework')">← Homework</button>
+      <button class="btn btn-next" onclick="goTo('task2')">Next: Task 2 →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION: TASK 2 — LAYOUT PAGE
+  ═══════════════════════════════════════════════ -->
+  <div id="task2" class="section">
+
+    <div class="section-banner banner-t2">TASK 2 — Build a Research Layout Page</div>
+
+    <p>Now use your mark font to build a research spread that tells the story of your project. This is not about decoration — every mark should be doing a job.</p>
+
+    <h2>What Your Page Must Include</h2>
+
+    <div class="what-box">
+      <div class="what-item">
+        <span class="wi-label">Primary research</span>
+        <span class="wi-val">Your own photographs, sketches or observations</span>
+      </div>
+      <div class="what-item">
+        <span class="wi-label">Secondary sources</span>
+        <span class="wi-val">Artist references, historical images, archive material</span>
+      </div>
+      <div class="what-item">
+        <span class="wi-label">Knowledge text</span>
+        <span class="wi-val">A short paragraph of written analysis or contextual information</span>
+      </div>
+      <div class="what-item">
+        <span class="wi-label">Source references</span>
+        <span class="wi-val">Artist name, date, or institution for every image not your own</span>
+      </div>
+      <div class="what-item">
+        <span class="wi-label">Your marks</span>
+        <span class="wi-val">Used to connect, frame, direct, and narrate</span>
+      </div>
+    </div>
+
+    <div class="diagonal-rule"></div>
+
+    <h2>Layout Principles</h2>
+    <p>Look at Micky Zhuo's work again — these are the structural decisions that make the pages work:</p>
+
+    <div class="principle-grid">
+      <div class="principle-card">
+        <div class="principle-top">╱</div>
+        <div class="principle-body">
+          <h4>Use a diagonal</h4>
+          <p>A strong diagonal line or element creates energy and guides the eye across the whole spread — from one cluster of images to another.</p>
+        </div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-top">⬌</div>
+        <div class="principle-body">
+          <h4>Connect primary to secondary</h4>
+          <p>Use arrows or connector marks to physically link your own photographs to artist references. Make the relationship visible.</p>
+        </div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-top">◻</div>
+        <div class="principle-body">
+          <h4>Frame to analyse</h4>
+          <p>A drawn rectangle or circle over part of an image isn't decoration — it's saying "look here, this part matters." Use it analytically.</p>
+        </div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-top">≡</div>
+        <div class="principle-body">
+          <h4>Layer text as mark</h4>
+          <p>Try rotating text, placing it at an angle, or running it along the edge of an image. Text can be a graphic element, not just information.</p>
+        </div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-top">●</div>
+        <div class="principle-body">
+          <h4>One accent colour</h4>
+          <p>Choose one accent colour and use it consistently for a specific purpose — links, key words, or a connecting thread across the page.</p>
+        </div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-top">░</div>
+        <div class="principle-body">
+          <h4>Let marks breathe</h4>
+          <p>Don't fill every gap. Negative space — gaps between marks and images — is part of the composition. Generous space makes marks feel deliberate.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Referencing Sources</h2>
+    <p>Every image on your page that is not your own work must be credited. This is not just good practice — it shows the depth of your research.</p>
+
+    <div class="research-box">
+      <h4>How to Reference on a Layout Page</h4>
+      <ul>
+        <li><strong>Artist name + work title + year</strong> placed close to the image — small, neat, consistent</li>
+        <li>If from a website: artist name + website name is sufficient</li>
+        <li>If from a book or archive: author/institution + publication name</li>
+        <li>Use your <strong>accent colour</strong> for reference text — as Micky did — to make it visually consistent and distinct from your analytical writing</li>
+        <li>References are part of the design, not an afterthought</li>
+      </ul>
+    </div>
+
+    <h2>Writing Knowledge on the Page</h2>
+    <p>Your page should include at least one piece of <strong>written analysis</strong> — not a caption, but a short paragraph that demonstrates you understand the context of your research.</p>
+
+    <div class="tip-box">
+      <h4>💡 What "knowledge text" means</h4>
+      <ul>
+        <li>Not just: <em>"This is a photo of a cracked wall."</em></li>
+        <li>But: <em>"The cracked surface references a broader language of urban material memory — walls as archives of use, time, and erasure."</em></li>
+        <li>Connect what you see to what you know — from artist research, cultural context, or making processes</li>
+        <li>This text can be placed at any angle, any size — but it must be readable</li>
+      </ul>
+    </div>
+
+    <div class="checklist">
+      <h3>Task 2 Checklist ✓</h3>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Primary research images placed on the page</span>
+          <span class="check-desc">Your own photographs, sketches, or observations</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Secondary sources placed and referenced</span>
+          <span class="check-desc">Artist/source credited with name, title, date or institution</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Mark font used to connect and narrate</span>
+          <span class="check-desc">Arrows, frames, dividers or textures from your mark library</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Knowledge text written and placed</span>
+          <span class="check-desc">Short paragraph of analysis — not just a caption</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Page has a clear visual narrative</span>
+          <span class="check-desc">A reader could follow the story without explanation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn btn-prev" onclick="goTo('task1')">← Task 1</button>
+      <button class="btn btn-next" onclick="goTo('task3')">Next: Task 3 →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SECTION: TASK 3 — SAVE & SUBMIT
+  ═══════════════════════════════════════════════ -->
+  <div id="task3" class="section">
+
+    <div class="section-banner banner-t3">TASK 3 — Document &amp; Submit</div>
+
+    <p>Show what you made and what you learned.</p>
+
+    <div class="workflow">
+      <div class="workflow-head">How to Document</div>
+      <div class="workflow-body">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Open the Progress Tool</div>
+            <p><a href="https://hsstokes.github.io/Progress_Documentation/" target="_blank">Open Progress Tool →</a></p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Take Screenshots</div>
+            <ul>
+              <li><strong>Mac:</strong> <span class="key">⌘ Shift 3</span> for full screen or <span class="key">⌘ Shift 4</span> to select an area</li>
+              <li><strong>Windows:</strong> <span class="key">Win + Shift + S</span></li>
+            </ul>
+            <p style="margin-top:8px;">Screenshot: your mark template, the Calligraphr editor, and your finished layout page.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Write a Reflection</div>
+            <p>Answer these questions briefly:</p>
+            <ul>
+              <li>What is your research theme and how do your marks express it?</li>
+              <li>Which mark on your page does the most important work — and why?</li>
+              <li>What would you do differently next time?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Download PDF</div>
+            <p>Click <strong>"Download Progress Report"</strong> to save your documentation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Submit to Padlet</h2>
+
+    <div class="submit-box">
+      <h3>Upload Three Things</h3>
+      <div class="submit-items">
+        <div class="submit-item">📄 Mark font preview — screenshot of your marks in Calligraphr or typed in Photoshop</div>
+        <div class="submit-item">◻ Your finished layout page</div>
+        <div class="submit-item">📋 Progress PDF with your reflection</div>
+      </div>
+      <a href="https://padlet.com/artslondon" target="_blank" class="padlet-btn">Submit to Padlet →</a>
+    </div>
+
+    <h2>What You Built Today</h2>
+
+    <div class="info-box">
+      <strong>You now have:</strong>
+      <ul>
+        <li>A <strong>personal mark library</strong> derived from your research theme — installed as a font, usable in any Adobe app</li>
+        <li>A <strong>research layout page</strong> where marks do real compositional and narrative work</li>
+        <li>A page that connects <strong>primary and secondary research</strong> visually and in writing</li>
+        <li>An understanding of how <strong>layout itself carries meaning</strong> — not just what you show, but how you show it</li>
+        <li>All sources <strong>properly referenced</strong> as part of the design</li>
+      </ul>
+    </div>
+
+    <div class="checklist">
+      <h3>Task 3 Checklist ✓</h3>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Screenshots taken of process and outcome</span>
+          <span class="check-desc">Template, Calligraphr editor, finished page</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Reflection written in Progress Tool</span>
+          <span class="check-desc">Theme, key mark, what you'd do differently</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">PDF downloaded</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-box" onclick="toggleCheck(this)"></div>
+        <div>
+          <span class="check-label">Submitted to Padlet</span>
+          <span class="check-desc">Mark preview, layout page, and progress PDF</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-btns">
+      <button class="btn btn-prev" onclick="goTo('task2')">← Task 2</button>
+      <button class="btn btn-next" onclick="goTo('overview')">↩ Back to Start</button>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <span class="modal-close" onclick="closeModal()">×</span>
+  <img class="modal-img" id="modalImg">
+</div>
+
+<button class="print-btn" onclick="window.print()" title="Print">🖨</button>
+
+<footer style="max-width:1060px;margin:0 auto;padding:0 30px;">
+  © 2025 Fashion Design Term 3 — Mark-Making as Layout
+</footer>
+
+<script>
+const sections = ['overview','homework','task1','task2','task3'];
+let current = 'overview';
+
+function goTo(id) {
+  document.getElementById(current).classList.remove('active');
+  document.querySelector(`[data-sec="${current}"]`).classList.remove('active');
+  current = id;
+  document.getElementById(current).classList.add('active');
+  document.querySelector(`[data-sec="${current}"]`).classList.add('active');
+  const pct = ((sections.indexOf(id) + 1) / sections.length) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  saveChecklist();
+}
+
+document.querySelectorAll('.nav-block').forEach(b => {
+  b.addEventListener('click', () => goTo(b.dataset.sec));
+});
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  saveChecklist();
+}
+
+function saveChecklist() {
+  const states = Array.from(document.querySelectorAll('.check-box')).map(b => b.classList.contains('checked'));
+  localStorage.setItem('marks-font-checklist', JSON.stringify(states));
+}
+
+function loadChecklist() {
+  const saved = localStorage.getItem('marks-font-checklist');
+  if (!saved) return;
+  const states = JSON.parse(saved);
+  document.querySelectorAll('.check-box').forEach((b, i) => {
+    if (states[i]) b.classList.add('checked');
+  });
+}
+
+function openModal(src) {
+  document.getElementById('modalImg').src = src;
+  document.getElementById('modal').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', loadChecklist);
+</script>
+</body>
+</html>
