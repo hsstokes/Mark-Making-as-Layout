@@ -989,7 +989,20 @@ footer {
     <h2>Step 4 — Make Your Marks</h2>
 
     <p>Use <strong>black ink</strong> on the template. Your marks should fill the box boldly — not timidly. Think about what materials respond to your theme:</p>
+    
+    <div style="margin:16px 0 24px;">
+      <div class="example-image-slot" style="min-height:200px;border-radius:4px;overflow:hidden;background:#111;max-width:500px;">
+        <img src="mark-template-example.jpg" alt="Example filled mark template"
+          onclick="openModal(this.src)"
+          onerror="this.parentElement.innerHTML='[Add mark-template-example.jpg]'"
+          style="width:100%;height:100%;object-fit:cover;cursor:pointer;">
+      </div>
+      <p style="font-size:0.78rem;color:var(--concrete);margin-top:8px;font-style:italic;">
+        Example of a completed mark template — bold, dark marks assigned to character boxes
+      </p>
+    </div>
 
+    
     <div class="compare-grid">
       <div class="compare-card good">
         <h4>✓ Works well with Calligraphr</h4>
@@ -1002,6 +1015,7 @@ footer {
           <li>Splattered or flicked ink (bold, not too fine)</li>
         </ul>
       </div>
+
       <div class="compare-card note">
         <h4>⚠ May need testing first</h4>
         <ul>
@@ -1026,6 +1040,8 @@ footer {
         <li>Consider making marks in the same session so they feel consistent as a set</li>
       </ul>
     </div>
+
+
 
     <h2>Step 5 — Scan Your Template</h2>
     <ul style="margin-left:20px; margin-bottom:16px;">
@@ -1136,6 +1152,30 @@ footer {
             <div class="notice">
               <strong>Note:</strong> Unlike letters, some marks deliberately have an irregular edge — don't over-clean. Preserve the mark quality that makes it feel hand-made.
             </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">+</div>
+          <div class="step-content">
+            <div class="step-title">Example: Before & After Cleaning</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;">
+              <div class="example-image-slot" style="min-height:160px;border-radius:4px;overflow:hidden;">
+                <img src="calligraphr-before.jpg" alt="Mark before cleaning"
+                  onclick="openModal(this.src)"
+                  onerror="this.parentElement.innerHTML='[Add calligraphr-before.jpg]'"
+                  style="width:100%;height:100%;object-fit:cover;cursor:pointer;">
+              </div>
+              <div class="example-image-slot" style="min-height:160px;border-radius:4px;overflow:hidden;">
+                <img src="calligraphr-after.jpg" alt="Mark after cleaning"
+                  onclick="openModal(this.src)"
+                  onerror="this.parentElement.innerHTML='[Add calligraphr-after.jpg]'"
+                  style="width:100%;height:100%;object-fit:cover;cursor:pointer;">
+              </div>
+            </div>
+            <p style="font-size:0.78rem;color:var(--concrete);margin-top:8px;font-style:italic;">
+              Left: mark as uploaded — background noise visible. Right: after cleaning in the Calligraphr editor.
+            </p>
           </div>
         </div>
 
@@ -1310,6 +1350,34 @@ footer {
           <h4>Let marks breathe</h4>
           <p>Don't fill every gap. Negative space — gaps between marks and images — is part of the composition. Generous space makes marks feel deliberate.</p>
         </div>
+      </div>
+    </div>
+
+    <h2>Student Examples</h2>
+    <p>See how marks are used to connect and narrate across a research spread:</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
+      <div>
+        <div class="example-image-slot" style="min-height:220px;border-radius:4px;overflow:hidden;background:#111;">
+          <img src="layout-example-1.jpg" alt="Student layout example 1"
+            onclick="openModal(this.src)"
+            onerror="this.parentElement.innerHTML='[Add layout-example-1.jpg]'"
+            style="width:100%;height:100%;object-fit:cover;cursor:pointer;">
+        </div>
+        <p style="font-size:0.78rem;color:var(--concrete);margin-top:8px;font-style:italic;">
+          [Student name] — [research theme]
+        </p>
+      </div>
+      <div>
+        <div class="example-image-slot" style="min-height:220px;border-radius:4px;overflow:hidden;background:#111;">
+          <img src="layout-example-2.jpg" alt="Student layout example 2"
+            onclick="openModal(this.src)"
+            onerror="this.parentElement.innerHTML='[Add layout-example-2.jpg]'"
+            style="width:100%;height:100%;object-fit:cover;cursor:pointer;">
+        </div>
+        <p style="font-size:0.78rem;color:var(--concrete);margin-top:8px;font-style:italic;">
+          [Student name] — [research theme]
+        </p>
       </div>
     </div>
 
