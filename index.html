@@ -35,7 +35,6 @@ body {
   line-height: 1.7;
 }
 
-/* ── DIAGONAL SLASH (decorative) ── */
 body::before {
   content: '';
   position: fixed;
@@ -57,7 +56,6 @@ body::before {
   z-index: 1;
 }
 
-/* ── HEADER ── */
 .site-header {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -121,12 +119,10 @@ body::before {
 .arc-item.active .arc-num { color: var(--blue-accent); }
 .arc-item strong { display: block; font-size: 0.8rem; }
 
-/* ── PROGRESS BAR ── */
 .progress-wrap {
   height: 6px;
   background: var(--warm-mid);
   margin-bottom: 30px;
-  border-radius: 0;
   overflow: hidden;
 }
 .progress-fill {
@@ -135,7 +131,6 @@ body::before {
   transition: width 0.4s ease;
 }
 
-/* ── NAV BLOCKS ── */
 .nav-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -165,7 +160,6 @@ body::before {
 .nav-block .nav-sub { color: var(--concrete); font-size: 0.65rem; margin-top: 2px; display: block; }
 .nav-block.active .nav-sub { color: var(--warm-mid); }
 
-/* ── SECTIONS ── */
 .section { display: none; }
 .section.active { display: block; animation: fadeUp 0.4s ease; }
 
@@ -174,7 +168,6 @@ body::before {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── TYPOGRAPHY ── */
 h2 {
   font-family: 'DM Serif Display', serif;
   font-size: 1.8rem;
@@ -213,7 +206,6 @@ p {
 a { color: var(--teal); font-weight: 600; }
 a:hover { color: var(--pink); }
 
-/* ── SECTION BANNER ── */
 .section-banner {
   padding: 14px 20px;
   margin-bottom: 25px;
@@ -230,7 +222,6 @@ a:hover { color: var(--pink); }
 .banner-t2 { background: #f0ebf8; color: #7b4fa3; }
 .banner-t3 { background: #eaf3fb; color: #2a7aab; }
 
-/* ── STUDENT EXAMPLE BOX ── */
 .student-example {
   background: var(--ink);
   color: white;
@@ -292,7 +283,6 @@ a:hover { color: var(--pink); }
 }
 .annotation strong { color: var(--blue-accent); display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
 
-/* ── INFO BOX ── */
 .info-box {
   border: 2px solid var(--teal);
   border-radius: 4px;
@@ -304,7 +294,6 @@ a:hover { color: var(--pink); }
 .info-box ul { margin-left: 18px; margin-top: 8px; }
 .info-box li { margin-bottom: 6px; font-size: 0.9rem; }
 
-/* ── MARK VOCABULARY GRID ── */
 .mark-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -326,7 +315,6 @@ a:hover { color: var(--pink); }
 .mark-card .mark-name { font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700; color: var(--teal); display: block; }
 .mark-card .mark-use { font-size: 0.75rem; color: var(--concrete); margin-top: 4px; line-height: 1.4; }
 
-/* ── WORKFLOW BOX ── */
 .workflow {
   border: 2px solid var(--ink);
   border-radius: 4px;
@@ -383,7 +371,6 @@ a:hover { color: var(--pink); }
 .step-content li { font-size: 0.88rem; margin-bottom: 5px; }
 .step-content p { font-size: 0.88rem; margin-bottom: 8px; }
 
-/* ── COMPARISON ── */
 .compare-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -406,7 +393,6 @@ a:hover { color: var(--pink); }
 .compare-card.note { border-color: var(--blue-accent); }
 .compare-card.note h4 { color: var(--blue-accent); }
 
-/* ── TIP BOX ── */
 .tip-box {
   background: #fffbea;
   border: 2px solid #e6c200;
@@ -419,7 +405,6 @@ a:hover { color: var(--pink); }
 .tip-box ul { margin-left: 16px; }
 .tip-box li { margin-bottom: 5px; }
 
-/* ── NOTICE ── */
 .notice {
   background: rgba(234, 55, 163, 0.08);
   border-left: 5px solid var(--pink);
@@ -430,7 +415,6 @@ a:hover { color: var(--pink); }
 }
 .notice strong { color: var(--pink); }
 
-/* ── LAYOUT PRINCIPLE CARDS ── */
 .principle-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -454,15 +438,13 @@ a:hover { color: var(--pink); }
   align-items: center;
   justify-content: center;
   font-size: 2.2rem;
-  position: relative;
-  overflow: hidden;
+  color: white;
 }
 
 .principle-body { padding: 14px; }
 .principle-body h4 { font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; color: var(--teal); margin-bottom: 6px; text-transform: uppercase; }
 .principle-body p { font-size: 0.82rem; margin: 0; color: var(--ink); line-height: 1.5; }
 
-/* ── CHECKLIST ── */
 .checklist {
   background: white;
   border: 2px solid var(--teal);
@@ -508,7 +490,6 @@ a:hover { color: var(--pink); }
 .check-label { font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 700; color: var(--teal); display: block; }
 .check-desc { font-size: 0.82rem; color: var(--concrete); margin-top: 2px; }
 
-/* ── SHORTCUT ── */
 .key {
   display: inline-block;
   background: var(--ink);
@@ -520,7 +501,6 @@ a:hover { color: var(--pink); }
   letter-spacing: 0.05em;
 }
 
-/* ── WHAT TO MAKE SUMMARY ── */
 .what-box {
   background: var(--ink);
   color: white;
@@ -535,7 +515,6 @@ a:hover { color: var(--pink); }
 .what-item .wi-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue-accent); display: block; margin-bottom: 4px; }
 .what-item .wi-val { font-size: 0.88rem; line-height: 1.5; }
 
-/* ── NAV BUTTONS ── */
 .nav-btns {
   display: flex;
   justify-content: space-between;
@@ -563,7 +542,6 @@ a:hover { color: var(--pink); }
 .btn-next { background: var(--ink); color: white; border-color: var(--ink); }
 .btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
 
-/* ── SUBMIT BOX ── */
 .submit-box {
   border: 3px dashed var(--teal);
   border-radius: 4px;
@@ -608,7 +586,6 @@ a:hover { color: var(--pink); }
 }
 .padlet-btn:hover { background: var(--ink); color: white; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10,122,122,0.3); }
 
-/* ── RESEARCH BOX ── */
 .research-box {
   background: linear-gradient(135deg, #f0f8f8, white);
   border: 2px solid var(--teal);
@@ -620,7 +597,6 @@ a:hover { color: var(--pink); }
 .research-box ul { margin-left: 18px; }
 .research-box li { font-size: 0.88rem; margin-bottom: 7px; }
 
-/* ── DIAGONAL ACCENT LINE in sections ── */
 .diagonal-rule {
   height: 3px;
   background: linear-gradient(90deg, var(--pink), var(--teal));
@@ -628,7 +604,6 @@ a:hover { color: var(--pink); }
   transform: skewX(-15deg);
 }
 
-/* ── FOOTER ── */
 footer {
   text-align: center;
   padding: 20px 0 10px;
@@ -639,7 +614,6 @@ footer {
   color: var(--concrete);
 }
 
-/* ── MODAL ── */
 .modal {
   display: none;
   position: fixed;
@@ -668,7 +642,6 @@ footer {
 }
 .modal-close:hover { color: var(--pink); }
 
-/* ── PRINT ── */
 .print-btn {
   position: fixed;
   bottom: 22px;
@@ -698,7 +671,6 @@ footer {
 
 <div class="container">
 
-  <!-- HEADER -->
   <header class="site-header">
     <div>
       <div class="header-eyebrow">Fashion Design · Term 3 · Session 2</div>
@@ -711,7 +683,6 @@ footer {
     </div>
   </header>
 
-  <!-- LESSON ARC -->
   <div class="lesson-arc">
     <div class="arc-item">
       <span class="arc-num">SESSION 1</span>
@@ -730,12 +701,10 @@ footer {
     </div>
   </div>
 
-  <!-- PROGRESS -->
   <div class="progress-wrap">
     <div class="progress-fill" id="progressBar" style="width:20%"></div>
   </div>
 
-  <!-- NAV -->
   <div class="nav-grid">
     <div class="nav-block active" data-sec="overview">
       <span class="nav-icon">👁</span>
@@ -764,15 +733,13 @@ footer {
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       SECTION: OVERVIEW
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ OVERVIEW ═══ -->
   <div id="overview" class="section active">
 
     <h2>What Is This Session?</h2>
-    <p>In Session 1 you turned your <strong>handwriting</strong> into a font you could type with. This session goes further. You will turn your <strong>hand-made marks</strong> into a visual language — a set of graphic tools you can use to build a research page that tells a story.</p>
+    <p>In Session 1 you turned your <strong>handwriting</strong> into a font you could type with. This session goes further. You will turn your <strong>hand-made marks</strong> into a set of tools you can type onto a page — to connect images, add meaning, and tell the story of your research.</p>
 
-    <p>The marks you make will do real work on the page: <strong>connecting images, guiding the eye, framing ideas, and showing relationships</strong> between your primary research and secondary sources.</p>
+    <p>These marks will do real work on the page: <strong>linking images together, guiding the reader's eye, framing important details, and showing the relationship</strong> between your own photographs or observations (<em>primary research</em>) and the artists or references you have studied (<em>secondary sources</em>).</p>
 
     <div class="diagonal-rule"></div>
 
@@ -791,11 +758,11 @@ footer {
         <div class="example-annotations">
           <div class="annotation">
             <strong>Punctuation Personified, 1824</strong>
-            An early children's book that gave each punctuation mark a body, a personality, and a role. The comma bows; the exclamation stands upright. Even then, punctuation was understood as expressive form, not just grammar.
+            An early children's book that gave each punctuation mark a body, a personality, and a role. The comma bows; the exclamation stands upright. Even then, punctuation was understood as expressive form — not just grammar.
           </div>
           <div class="annotation">
             <strong>Nicholas Rougeux — Between the Words</strong>
-            Chicago designer Rougeux stripped literary classics of all letters, leaving only punctuation — then arranged it into spirals. The visual rhythm of a book becomes visible. Your marks will do something similar: reveal the structure beneath the surface.
+            Chicago designer Rougeux removed all the letters from literary classics, leaving only the punctuation. He then arranged these marks into spirals. The visual rhythm of a whole book becomes visible. Your marks will do something similar — reveal the structure and energy beneath the surface of a page.
           </div>
           <div class="annotation">
             <strong>Your marks continue this</strong>
@@ -806,45 +773,45 @@ footer {
     </div>
 
     <h2>Student Inspiration</h2>
-    <p>Look at how Micky Zhuo used marks, type, and images together to create research pages that feel completely their own:</p>
+    <p>Look at how Micky Zhuo used marks, type, and images together to build research pages that feel completely their own:</p>
 
     <div class="student-example">
       <div class="example-header">Student Work — Micky Zhuo: Design 2025/26 · Theme: Memory of the City</div>
       <div class="example-body">
         <div class="example-image-slot">
-          <img src="micky_1.jpg" alt="Micky Zhuo research page 1 — industrial marks and blue accents" onclick="openModal(this.src)" onerror="this.parentElement.innerHTML='[Add micky_1.jpg — research spread with industrial marks, blue rectangle, gestural brushwork]'" style="cursor:pointer;">
+          <img src="micky_1.jpg" alt="Micky Zhuo research page 1" onclick="openModal(this.src)" onerror="this.parentElement.innerHTML='[Add micky_1.jpg]'" style="cursor:pointer;">
         </div>
         <div class="example-annotations">
           <div class="annotation">
             <strong>Gestural marks as texture</strong>
-            Scratchy ink brushwork frames images without containing them — the marks feel like the research theme itself: fragmented, industrial, raw.
+            Scratchy ink brushwork surrounds the images — the marks feel like the research theme itself: broken, industrial, energetic. They don't just decorate. They set the mood.
           </div>
           <div class="annotation">
             <strong>The diagonal slash</strong>
-            A single diagonal line cuts across the entire spread — connecting primary photography (Shoreditch architecture) with secondary textile research. One mark, doing enormous work.
+            A single diagonal line cuts across the whole page. It connects the primary photography (Micky's own photographs of Shoreditch) with secondary research (textile and material references). One mark — doing enormous work.
           </div>
           <div class="annotation">
-            <strong>Colour as a voice</strong>
-            A single blue rectangle and teal hyperlink-style text create a conceptual thread. The colour isn't decoration — it signals "this connects to that."
+            <strong>Colour as a signal</strong>
+            One blue rectangle and blue text create a thread across the page. The colour is not decoration — it tells the reader: these things are connected.
           </div>
         </div>
       </div>
       <div class="example-body">
         <div class="example-image-slot">
-          <img src="micky_2.jpg" alt="Micky Zhuo research page 2 — body, space, controlled marks" onclick="openModal(this.src)" onerror="this.parentElement.innerHTML='[Add micky_2.jpg — research spread with drawn rectangles over body image, parallel lines, arrows]'" style="cursor:pointer;">
+          <img src="micky_2.jpg" alt="Micky Zhuo research page 2" onclick="openModal(this.src)" onerror="this.parentElement.innerHTML='[Add micky_2.jpg]'" style="cursor:pointer;">
         </div>
         <div class="example-annotations">
           <div class="annotation">
             <strong>Drawn rectangles as analysis</strong>
-            Hand-drawn boxes overlaid on a photograph of a body don't just decorate — they frame, isolate, and ask a question: what does it mean to be contained in space?
+            Hand-drawn boxes placed over a photograph don't just look interesting — they ask a question. Here: what does it mean for a body to exist inside a controlled space? The mark is thinking out loud.
           </div>
           <div class="annotation">
-            <strong>Arrows that narrate</strong>
-            Small directional marks guide the reader from one image to the next — from a personal photograph to an architectural reference to a furniture object.
+            <strong>Arrows that guide the reader</strong>
+            Small arrows move the reader from one image to the next — from a personal photograph, to an architectural reference, to a furniture object. The arrows show the connection between ideas.
           </div>
           <div class="annotation">
-            <strong>Text as mark-making</strong>
-            Rotated, scattered text is placed like a mark — not just informing but composing. The words "controlled spaces" appear as both annotation and design element.
+            <strong>Text placed like a mark</strong>
+            Text is rotated and scattered across the page like a drawing element. The words "controlled spaces" appear as both a label and a visual shape. Text does not have to sit in a straight line.
           </div>
         </div>
       </div>
@@ -853,12 +820,13 @@ footer {
     <h2>The Key Idea: Calligraphr as a Mark Library</h2>
 
     <div class="info-box">
-      <strong>The hack:</strong> Calligraphr doesn't know what you draw in each box. It just converts whatever black mark it finds into a scalable character. So instead of letters, you draw <strong>marks, arrows, gestures, and textures</strong> — and assign each one to a keystroke.
+      <strong>The idea:</strong> Calligraphr does not know what you draw in each box. It just converts any black mark into a character you can type. So instead of writing letters, you draw <strong>your own marks, arrows, and textures</strong> — and each one is assigned to a key on the keyboard.
       <ul>
-        <li>Press <strong>A</strong> → a diagonal slash appears</li>
-        <li>Press <strong>B</strong> → an ink splatter appears</li>
-        <li>Press <strong>C</strong> → a gestural underline appears</li>
-        <li>These marks scale perfectly, work in any Adobe app, and feel completely yours</li>
+        <li>Press <strong>A</strong> → your diagonal slash mark appears on the page</li>
+        <li>Press <strong>B</strong> → your ink splatter mark appears</li>
+        <li>Press <strong>C</strong> → your gestural underline appears</li>
+        <li>You can make these marks any size — small for fine details, very large for bold effects</li>
+        <li>They work in Photoshop, InDesign, and any other Adobe app</li>
       </ul>
     </div>
 
@@ -908,9 +876,7 @@ footer {
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       SECTION: HOMEWORK
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ HOMEWORK ═══ -->
   <div id="homework" class="section">
 
     <div class="section-banner banner-hw">HOMEWORK — Make Your Mark Library</div>
@@ -1010,17 +976,16 @@ footer {
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <div class="step-title">Assign marks to boxes</div>
-            <p>Write a small pencil note at the top of each box — which mark goes here? For example: box A = diagonal slash, box B = ink splatter. This is your <strong>mark map</strong> — keep it, you'll need it later.</p>
+            <div class="step-title">Assign Marks to Boxes</div>
+            <p>Write a small pencil note at the top of each box — which mark goes here? For example: box ! = emphasis splash, box / = diagonal divider. This is your <strong>mark map</strong> — keep it, you will need it later.</p>
           </div>
         </div>
       </div>
     </div>
 
     <h2>Step 4 — Make Your Marks</h2>
-
     <p>Use <strong>black ink</strong> on the template. Your marks should fill the box boldly — not timidly. Think about what materials respond to your theme:</p>
-    
+
     <div style="margin:16px 0 24px;">
       <div class="example-image-slot" style="min-height:200px;border-radius:4px;overflow:hidden;background:#111;max-width:500px;">
         <img src="mark-template-example.jpg" alt="Example filled mark template"
@@ -1033,7 +998,6 @@ footer {
       </p>
     </div>
 
-    
     <div class="compare-grid">
       <div class="compare-card good">
         <h4>✓ Works well with Calligraphr</h4>
@@ -1046,7 +1010,6 @@ footer {
           <li>Splattered or flicked ink (bold, not too fine)</li>
         </ul>
       </div>
-
       <div class="compare-card note">
         <h4>⚠ May need testing first</h4>
         <ul>
@@ -1059,7 +1022,7 @@ footer {
     </div>
 
     <div class="notice">
-      <strong>Key principle:</strong> Calligraphr vectorises whatever black shape it finds. It doesn't know if it's a letter or a mark — it just traces the edges. This means your mark needs to be <strong>dark, clear, and contained within the box</strong>.
+      <strong>Key principle:</strong> Calligraphr traces the outline of whatever black shape it finds in each box. It does not know if it is a letter or a mark — it just converts the shape. This means your mark needs to be <strong>dark, clear, and kept inside the box</strong>. A pale or very faint mark may not be detected.
     </div>
 
     <div class="tip-box">
@@ -1068,11 +1031,9 @@ footer {
         <li>Make 2–3 versions of each mark — choose the best one to scan</li>
         <li>Test on a scrap piece of paper first</li>
         <li>Wait for all ink to dry fully before scanning</li>
-        <li>Consider making marks in the same session so they feel consistent as a set</li>
+        <li>Make all marks in the same session so they feel consistent as a set</li>
       </ul>
     </div>
-
-
 
     <h2>Step 5 — Scan Your Template</h2>
     <ul style="margin-left:20px; margin-bottom:16px;">
@@ -1102,14 +1063,14 @@ footer {
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <div>
           <span class="check-label">I have downloaded and printed a Calligraphr template</span>
-          <span class="check-desc">From calligraphr.com with my Session 1 account</span>
+          <span class="check-desc">Punctuation template from calligraphr.com</span>
         </div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <div>
           <span class="check-label">I have made all my marks in black ink</span>
-          <span class="check-desc">Bold, dark, each mark in its assigned box</span>
+          <span class="check-desc">Bold, dark, each mark kept inside its box</span>
         </div>
       </div>
       <div class="check-item">
@@ -1122,8 +1083,8 @@ footer {
       <div class="check-item">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <div>
-          <span class="check-label">I have my mark map (which mark = which keystroke)</span>
-          <span class="check-desc">Written note or photo of the pencil labels on the template</span>
+          <span class="check-label">I have my mark map</span>
+          <span class="check-desc">A written note showing which mark is in which box</span>
         </div>
       </div>
     </div>
@@ -1134,12 +1095,10 @@ footer {
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       SECTION: TASK 1 — BUILD THE FONT
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ TASK 1 ═══ -->
   <div id="task1" class="section">
 
-    <div class="section-banner banner-t1">TASK 1 — Upload, Clean &amp; Install Your Mark Font</div>
+    <div class="section-banner banner-t1">TASK 1 — Upload &amp; Install Your Mark Font</div>
 
     <p>You are now going to turn your scanned marks into an installable font using Calligraphr. Once installed, you can type your marks into any Adobe app.</p>
 
@@ -1162,11 +1121,11 @@ footer {
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-content">
-            <div class="step-title">Check Your Marks</div>
+            <div class="step-title">Review Your Upload</div>
             <ul>
-              <li>Look at each character box — does the mark appear correctly?</li>
-              <li>Check marks aren't clipped at the edges</li>
-              <li>Check the mark feels like it has the right scale in the box</li>
+              <li>Look at each box — can you see your mark clearly?</li>
+              <li>Check no marks are cut off at the edges of the box</li>
+              <li>Check the mark fills the box — not too small, not overflowing</li>
             </ul>
           </div>
         </div>
@@ -1174,8 +1133,8 @@ footer {
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <div class="step-title">Check Your Marks</div>
-            <p>Calligraphr has improved significantly — in most cases the app handles cleanup automatically and you won't need to edit individual characters. Simply check that:</p>
+            <div class="step-title">Check the Quality</div>
+            <p>Calligraphr has improved significantly — in most cases the app handles cleanup automatically and you will not need to edit individual characters. Simply check that:</p>
             <ul>
               <li>Each mark has been detected correctly in its box</li>
               <li>No marks are clipped at the edges</li>
@@ -1205,9 +1164,9 @@ footer {
             <div class="step-title">Download and Install</div>
             <ul>
               <li>Download the <strong>.ttf or .otf</strong> file</li>
-              <li><strong>Mac:</strong> Double-click → "Install Font"</li>
-              <li><strong>Windows:</strong> Right-click → "Install"</li>
-              <li><strong>Important:</strong> Close and reopen Photoshop or InDesign to see your font</li>
+              <li><strong>Mac:</strong> Double-click the file → click "Install Font"</li>
+              <li><strong>Windows:</strong> Right-click the file → click "Install"</li>
+              <li><strong>Important:</strong> Close and reopen Photoshop or InDesign after installing</li>
             </ul>
           </div>
         </div>
@@ -1218,13 +1177,13 @@ footer {
             <div class="step-title">Test Your Marks</div>
             <ul>
               <li>Open Photoshop or InDesign</li>
-              <li>Select the Text tool — find your font by name</li>
-              <li>Type the keys you assigned to your marks (A, B, C…)</li>
-              <li>Your marks should appear — try scaling them up and down</li>
+              <li>Select the <strong>Text tool</strong> — find your font by name in the font list</li>
+              <li>Type the punctuation keys you assigned to your marks</li>
+              <li>Your marks should appear — try making them bigger and smaller</li>
             </ul>
             <div class="tip-box" style="margin-top:12px;">
-              <h4>💡 Scale is everything</h4>
-              Because these are font characters, you can size them using the font size field. A mark at 12pt is a small annotation detail; the same mark at 200pt becomes a full-bleed graphic element.
+              <h4>💡 Size is everything</h4>
+              Because these are font characters, you change their size using the font size field. A mark at 12pt is a small detail. The same mark at 200pt becomes a large graphic element that fills part of the page.
             </div>
           </div>
         </div>
@@ -1244,15 +1203,15 @@ footer {
       <div class="check-item">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <div>
-          <span class="check-label">Cleaned all marks</span>
-          <span class="check-desc">Background noise removed, mark quality preserved</span>
+          <span class="check-label">Reviewed all marks</span>
+          <span class="check-desc">Each mark detected correctly, none clipped at edges</span>
         </div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <div>
           <span class="check-label">Built and downloaded the font</span>
-          <span class="check-desc">.ttf or .otf file saved</span>
+          <span class="check-desc">.ttf or .otf file saved to your computer</span>
         </div>
       </div>
       <div class="check-item">
@@ -1265,7 +1224,7 @@ footer {
       <div class="check-item">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <div>
-          <span class="check-label">Marks appear correctly in Photoshop/InDesign</span>
+          <span class="check-label">Marks appear correctly in Photoshop or InDesign</span>
           <span class="check-desc">App reopened, font found by name, marks scale correctly</span>
         </div>
       </div>
@@ -1277,14 +1236,23 @@ footer {
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       SECTION: TASK 2 — LAYOUT PAGE
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ TASK 2 ═══ -->
   <div id="task2" class="section">
 
     <div class="section-banner banner-t2">TASK 2 — Build a Research Layout Page</div>
 
-    <p>Now use your mark font to build a research spread that tells the story of your project. This is not about decoration — every mark should be doing a job.</p>
+    <div class="info-box" style="margin-bottom:25px;">
+      <strong>Words to know for this task:</strong>
+      <ul>
+        <li><strong>Primary research</strong> — images, photographs, or observations you made yourself</li>
+        <li><strong>Secondary sources</strong> — images, artworks, or references made by other artists or designers that you have researched</li>
+        <li><strong>Knowledge text</strong> — a short paragraph where you explain what you understand about your research topic, in your own words</li>
+        <li><strong>Visual narrative</strong> — the way your page guides the reader through your ideas using images, marks, and layout — telling a story without needing to explain it out loud</li>
+        <li><strong>Reference</strong> — a credit next to an image that tells the reader who made it, when, and where you found it</li>
+      </ul>
+    </div>
+
+    <p>Now use your mark font to build a research page that tells the story of your project. This is not about decoration — every mark should be doing a job.</p>
 
     <h2>What Your Page Must Include</h2>
 
@@ -1299,7 +1267,7 @@ footer {
       </div>
       <div class="what-item">
         <span class="wi-label">Knowledge text</span>
-        <span class="wi-val">A short paragraph of written analysis or contextual information</span>
+        <span class="wi-val">A short paragraph of written analysis in your own words</span>
       </div>
       <div class="what-item">
         <span class="wi-label">Source references</span>
@@ -1314,55 +1282,56 @@ footer {
     <div class="diagonal-rule"></div>
 
     <h2>Layout Principles</h2>
-    <p>Look at Micky Zhuo's work again — these are the structural decisions that make the pages work:</p>
+    <p>Look at Micky Zhuo's work again — these are the decisions that make the pages work:</p>
 
     <div class="principle-grid">
       <div class="principle-card">
         <div class="principle-top">╱</div>
         <div class="principle-body">
           <h4>Use a diagonal</h4>
-          <p>A strong diagonal line or element creates energy and guides the eye across the whole spread — from one cluster of images to another.</p>
+          <p>A strong diagonal line creates energy and guides the eye across the whole page — from one group of images to another.</p>
         </div>
       </div>
       <div class="principle-card">
         <div class="principle-top">⬌</div>
         <div class="principle-body">
           <h4>Connect primary to secondary</h4>
-          <p>Use arrows or connector marks to physically link your own photographs to artist references. Make the relationship visible.</p>
+          <p>Use arrows or connector marks to link your own photographs to artist references. Make the relationship between them visible.</p>
         </div>
       </div>
       <div class="principle-card">
         <div class="principle-top">◻</div>
         <div class="principle-body">
           <h4>Frame to analyse</h4>
-          <p>A drawn rectangle or circle over part of an image isn't decoration — it's saying "look here, this part matters." Use it analytically.</p>
+          <p>A drawn rectangle over part of an image is not just decoration — it is saying "look here, this part matters." Use it to analyse.</p>
         </div>
       </div>
       <div class="principle-card">
         <div class="principle-top">≡</div>
         <div class="principle-body">
           <h4>Layer text as mark</h4>
-          <p>Try rotating text, placing it at an angle, or running it along the edge of an image. Text can be a graphic element, not just information.</p>
+          <p>Try rotating text or placing it at an angle. Text can be a graphic element — not just information sitting in a straight line.</p>
         </div>
       </div>
       <div class="principle-card">
         <div class="principle-top">●</div>
         <div class="principle-body">
           <h4>One accent colour</h4>
-          <p>Choose one accent colour and use it consistently for a specific purpose — links, key words, or a connecting thread across the page.</p>
+          <p>Choose one colour and use it consistently for one purpose — links, key words, or a connecting thread across the page.</p>
         </div>
       </div>
       <div class="principle-card">
         <div class="principle-top">░</div>
         <div class="principle-body">
           <h4>Let marks breathe</h4>
-          <p>Don't fill every gap. Negative space — gaps between marks and images — is part of the composition. Generous space makes marks feel deliberate.</p>
+          <p>Do not fill every gap. Empty space between marks and images is part of the composition. Space makes marks feel deliberate.</p>
         </div>
       </div>
     </div>
+
     <h2>Type on a Path in Photoshop</h2>
-    <p>One of the most powerful ways to use text as a mark is to run it along a path — around a shape, a silhouette, or a freehand curve. Here's how:</p>
-    
+    <p>One of the most powerful ways to use text as a mark is to run it along a path — around a shape, a silhouette, or a freehand curve. Here is how:</p>
+
     <div class="workflow">
       <div class="workflow-head">Type on a Path — Quick Guide</div>
       <div class="workflow-body">
@@ -1372,8 +1341,8 @@ footer {
             <div class="step-title">Draw Your Path</div>
             <ul>
               <li>Select the <strong>Pen tool</strong> (P) or <strong>Ellipse tool</strong></li>
-              <li>In the top toolbar, set the mode to <strong>"Path"</strong> (not Shape or Fill)</li>
-              <li>Draw a curved line, circle, or trace around a silhouette</li>
+              <li>In the top toolbar, set the mode to <strong>"Path"</strong> — not Shape or Fill</li>
+              <li>Draw a curved line, a circle, or trace around a silhouette</li>
             </ul>
           </div>
         </div>
@@ -1395,7 +1364,7 @@ footer {
             <ul>
               <li>Use the <strong>Path Selection tool</strong> (black arrow) to drag the text along the path</li>
               <li>Flip text to the inside of a curve by dragging it through the path line</li>
-              <li>Resize text using the font size field — small text creates a delicate annotation, large text becomes a graphic element</li>
+              <li>Change the font size to make the text larger or smaller</li>
             </ul>
           </div>
         </div>
@@ -1404,26 +1373,25 @@ footer {
           <div class="step-content">
             <div class="step-title">Hide the Path</div>
             <ul>
-              <li>Go to <strong>View → Show → Target Path</strong> to toggle path visibility</li>
-              <li>Or simply click elsewhere — the path won't print or export</li>
+              <li>Go to <strong>View → Show → Target Path</strong> to hide the path line</li>
+              <li>Or simply click elsewhere — the path will not show when you export or print</li>
             </ul>
             <div class="tip-box" style="margin-top:12px;">
               <h4>💡 Around a silhouette</h4>
-              To run text around an object or figure, use the <strong>Pen tool</strong> to trace its outline as a path, then attach your text. The text becomes part of the composition — describing, questioning, or echoing the image it surrounds.
+              To run text around a figure or object, use the <strong>Pen tool</strong> to trace its outline as a path, then attach your text. The text becomes part of the composition — it describes, questions, or echoes the image it surrounds.
             </div>
           </div>
         </div>
       </div>
     </div>
 
-
     <h2>Student Example</h2>
-    <p>See how marks are used to connect and narrate across a research spread:</p>
+    <p>See how marks, layered images and diagonal composition work together to tell a research story:</p>
 
     <div style="display:grid;grid-template-columns:1fr;gap:16px;margin:20px 0;max-width:600px;">
       <div>
         <div class="example-image-slot" style="min-height:220px;border-radius:4px;overflow:hidden;background:#111;">
-          <img src="layout-example-1.jpg" alt="Student layout example 1"
+          <img src="layout-example-1.jpg" alt="Student layout example"
             onclick="openModal(this.src)"
             onerror="this.parentElement.innerHTML='[Add layout-example-1.jpg]'"
             style="width:100%;height:100%;object-fit:cover;cursor:pointer;">
@@ -1435,29 +1403,29 @@ footer {
     </div>
 
     <h2>Referencing Sources</h2>
-    <p>Every image on your page that is not your own work must be credited. This is not just good practice — it shows the depth of your research.</p>
+    <p>Every image on your page that is not your own work must be credited. This shows the depth of your research and is required for all submitted work.</p>
 
     <div class="research-box">
       <h4>How to Reference on a Layout Page</h4>
       <ul>
-        <li><strong>Artist name + work title + year</strong> placed close to the image — small, neat, consistent</li>
-        <li>If from a website: artist name + website name is sufficient</li>
-        <li>If from a book or archive: author/institution + publication name</li>
-        <li>Use your <strong>accent colour</strong> for reference text — as Micky did — to make it visually consistent and distinct from your analytical writing</li>
-        <li>References are part of the design, not an afterthought</li>
+        <li><strong>Artist name + work title + year</strong> — place this close to the image, small and consistent</li>
+        <li>If from a website: artist name + website name is enough</li>
+        <li>If from a book or archive: author or institution + publication name</li>
+        <li>Use your <strong>accent colour</strong> for reference text — as Micky did — to make it visually consistent and easy to find</li>
+        <li>References are part of the design — not an afterthought added at the end</li>
       </ul>
     </div>
 
     <h2>Writing Knowledge on the Page</h2>
-    <p>Your page should include at least one piece of <strong>written analysis</strong> — not a caption, but a short paragraph that demonstrates you understand the context of your research.</p>
+    <p>Your page should include at least one piece of <strong>written analysis</strong> — not just a caption, but a short paragraph that shows you understand the context of your research.</p>
 
     <div class="tip-box">
       <h4>💡 What "knowledge text" means</h4>
       <ul>
-        <li>Not just: <em>"This is a photo of a cracked wall."</em></li>
-        <li>But: <em>"The cracked surface references a broader language of urban material memory — walls as archives of use, time, and erasure."</em></li>
-        <li>Connect what you see to what you know — from artist research, cultural context, or making processes</li>
-        <li>This text can be placed at any angle, any size — but it must be readable</li>
+        <li>Not just a label: <em>"This is a photo of a cracked wall."</em></li>
+        <li>But an explanation: <em>"The cracked surface in this photograph connects to my research into urban decay — how buildings record time, damage, and human use on their surfaces."</em></li>
+        <li>Try to explain: what do you see? Why does it matter to your project? How does it connect to an artist or idea you have researched?</li>
+        <li>This text can be placed at any angle or size on the page — but it must still be easy to read</li>
       </ul>
     </div>
 
@@ -1474,7 +1442,7 @@ footer {
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <div>
           <span class="check-label">Secondary sources placed and referenced</span>
-          <span class="check-desc">Artist/source credited with name, title, date or institution</span>
+          <span class="check-desc">Artist or source credited with name, title, date or institution</span>
         </div>
       </div>
       <div class="check-item">
@@ -1506,9 +1474,7 @@ footer {
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════
-       SECTION: TASK 3 — SAVE & SUBMIT
-  ═══════════════════════════════════════════════ -->
+  <!-- ═══ TASK 3 ═══ -->
   <div id="task3" class="section">
 
     <div class="section-banner banner-t3">TASK 3 — Document &amp; Submit</div>
@@ -1533,7 +1499,7 @@ footer {
               <li><strong>Mac:</strong> <span class="key">⌘ Shift 3</span> for full screen or <span class="key">⌘ Shift 4</span> to select an area</li>
               <li><strong>Windows:</strong> <span class="key">Win + Shift + S</span></li>
             </ul>
-            <p style="margin-top:8px;">Screenshot: your mark template, the Calligraphr editor, and your finished layout page.</p>
+            <p style="margin-top:8px;">Take screenshots of: your mark template, the Calligraphr font preview, and your finished layout page.</p>
           </div>
         </div>
         <div class="step">
@@ -1552,7 +1518,7 @@ footer {
           <div class="step-num">4</div>
           <div class="step-content">
             <div class="step-title">Download PDF</div>
-            <p>Click <strong>"Download Progress Report"</strong> to save your documentation.</p>
+            <p>Click <strong>"Download Progress Report"</strong> to save your documentation as a PDF file.</p>
           </div>
         </div>
       </div>
@@ -1563,7 +1529,7 @@ footer {
     <div class="submit-box">
       <h3>Upload Three Things</h3>
       <div class="submit-items">
-        <div class="submit-item">📄 Mark font preview — screenshot of your marks in Calligraphr or typed in Photoshop</div>
+        <div class="submit-item">📄 Mark font preview — screenshot of your marks typed in Photoshop</div>
         <div class="submit-item">◻ Your finished layout page</div>
         <div class="submit-item">📋 Progress PDF with your reflection</div>
       </div>
@@ -1575,10 +1541,10 @@ footer {
     <div class="info-box">
       <strong>You now have:</strong>
       <ul>
-        <li>A <strong>personal mark library</strong> derived from your research theme — installed as a font, usable in any Adobe app</li>
-        <li>A <strong>research layout page</strong> where marks do real compositional and narrative work</li>
-        <li>A page that connects <strong>primary and secondary research</strong> visually and in writing</li>
-        <li>An understanding of how <strong>layout itself carries meaning</strong> — not just what you show, but how you show it</li>
+        <li>A <strong>personal mark library</strong> based on your research theme — installed as a font, usable in any Adobe app</li>
+        <li>A <strong>research layout page</strong> where marks connect and narrate</li>
+        <li>A page that links <strong>primary and secondary research</strong> visually and in writing</li>
+        <li>An understanding of how <strong>layout carries meaning</strong> — not just what you show, but how you show it</li>
         <li>All sources <strong>properly referenced</strong> as part of the design</li>
       </ul>
     </div>
@@ -1589,14 +1555,14 @@ footer {
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <div>
           <span class="check-label">Screenshots taken of process and outcome</span>
-          <span class="check-desc">Template, Calligraphr editor, finished page</span>
+          <span class="check-desc">Mark template, Calligraphr preview, finished page</span>
         </div>
       </div>
       <div class="check-item">
         <div class="check-box" onclick="toggleCheck(this)"></div>
         <div>
           <span class="check-label">Reflection written in Progress Tool</span>
-          <span class="check-desc">Theme, key mark, what you'd do differently</span>
+          <span class="check-desc">Theme, key mark, what you would do differently</span>
         </div>
       </div>
       <div class="check-item">
@@ -1620,9 +1586,8 @@ footer {
     </div>
   </div>
 
-</div><!-- /container -->
+</div>
 
-<!-- MODAL -->
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
   <span class="modal-close" onclick="closeModal()">×</span>
   <img class="modal-img" id="modalImg">
