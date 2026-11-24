@@ -525,6 +525,10 @@ img { max-width:100%; }
       <div class="title">📤 Upload &amp; Install Your Mark Font</div>
     </div>
     <p class="intro">Turn your scan into a font.<br>Then type your marks in Photoshop.</p>
+    <div class="video">
+      <div class="frame"><iframe src="https://ual.cloud.panopto.eu/Panopto/Pages/Embed.aspx?id=fe488cb1-ffc3-4235-ba70-b29e00b04754" allowfullscreen allow="autoplay"></iframe></div>
+      <div class="cap">▶ Same steps as Week 1 — upload your mark template instead of your handwriting</div>
+    </div>
     <div class="step open">
       <button class="step-head"><span class="step-num bg-teal">1</span>Upload your scan<span class="arrow">▶</span></button>
       <div class="step-body">
@@ -766,7 +770,7 @@ const SECTIONS = Array.from(document.querySelectorAll(".section")).map(s => s.id
 function goTo(id) {
   document.querySelectorAll(".section").forEach(s => s.classList.toggle("active", s.id == id));
   document.querySelectorAll(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.target == id));
-  document.querySelectorAll("#" + id + " video").forEach(v => { v.play().catch(() => {}); });
+  document.querySelectorAll("#" + id + " video[autoplay]").forEach(v => { v.play().catch(() => {}); });
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 document.querySelectorAll(".nav-btn").forEach(b => b.addEventListener("click", () => goTo(b.dataset.target)));
